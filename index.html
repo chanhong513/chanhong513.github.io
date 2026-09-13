@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive audio samples for speech enhancement evaluation."
+    />
+    <title>Speech Enhancement Audio Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Audio demo home">
+        <span class="brand-mark" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i>
+        </span>
+        <span>Audio Demo</span>
+      </a>
+      <span class="venue">INTERSPEECH 2026</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Speech enhancement evaluation</p>
+        <h1 id="page-title">Listen beyond the noise.</h1>
+        <p class="summary">
+          Compare the proposed method with established baselines across acoustic
+          environments and input SNR levels.
+        </p>
+      </section>
+
+      <section class="reference-band" aria-labelledby="reference-heading">
+        <div>
+          <p class="section-label">Reference</p>
+          <h2 id="reference-heading">Clean speech</h2>
+          <p>The uncorrupted target used for every comparison.</p>
+        </div>
+        <div class="reference-player" data-track="reference"></div>
+      </section>
+
+      <section class="comparison" aria-labelledby="comparison-heading">
+        <div class="comparison-heading">
+          <div>
+            <p class="section-label">Evaluation samples</p>
+            <h2 id="comparison-heading">Method comparison</h2>
+          </div>
+          <p class="selection-summary" id="selection-summary" aria-live="polite"></p>
+        </div>
+
+        <div class="controls" aria-label="Audio sample conditions">
+          <fieldset>
+            <legend>Environment</legend>
+            <div class="segmented" id="environment-control">
+              <button type="button" data-value="anechoic" aria-pressed="true">Anechoic</button>
+              <button type="button" data-value="reverberative" aria-pressed="false">Reverberative</button>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Input SNR</legend>
+            <div class="segmented snr-control" id="snr-control">
+              <button type="button" data-value="-05dB" aria-pressed="true">-5 dB</button>
+              <button type="button" data-value="-10dB" aria-pressed="false">-10 dB</button>
+              <button type="button" data-value="-15dB" aria-pressed="false">-15 dB</button>
+              <button type="button" data-value="-20dB" aria-pressed="false">-20 dB</button>
+              <button type="button" data-value="-25dB" aria-pressed="false">-25 dB</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="track-list" id="track-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Representative speech enhancement samples</p>
+      <p>Best experienced with headphones</p>
+    </footer>
+
+    <template id="player-template">
+      <article class="track">
+        <div class="track-meta">
+          <span class="track-index"></span>
+          <div>
+            <h3 class="track-name"></h3>
+            <p class="track-detail"></p>
+          </div>
+        </div>
+        <div class="player">
+          <button class="play-button" type="button" aria-label="Play">
+            <span class="play-icon" aria-hidden="true"></span>
+          </button>
+          <button class="waveform-button" type="button" aria-label="Seek audio">
+            <canvas class="waveform" height="72"></canvas>
+            <span class="progress-line" aria-hidden="true"></span>
+          </button>
+          <span class="time" aria-label="Playback time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
