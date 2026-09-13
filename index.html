@@ -8,7 +8,7 @@
       content="Audio demonstrations for ego-noise-aware spatial filtering and reliable UAV audition in extreme low-SNR conditions."
     />
     <title>Ego-Noise-Aware Spatial Filtering | Audio Demo</title>
-    <link rel="stylesheet" href="styles.css?v=20260913-2" />
+    <link rel="stylesheet" href="styles.css?v=20260913-3" />
   </head>
   <body>
     <header class="site-header">
@@ -18,7 +18,10 @@
         </span>
         <span>UAV Audition Demo</span>
       </a>
-      <span class="venue">INTERSPEECH 2026</span>
+      <nav class="header-links" aria-label="Project links">
+        <a class="paper-link is-disabled" id="paper-link" href="#" aria-disabled="true">Paper coming soon</a>
+        <span class="venue">INTERSPEECH 2026</span>
+      </nav>
     </header>
 
     <main>
@@ -77,11 +80,11 @@
           <fieldset>
             <legend>Input SNR</legend>
             <div class="segmented snr-control" id="snr-control">
-              <button type="button" data-value="-05dB" aria-pressed="true">-5 dB</button>
-              <button type="button" data-value="-10dB" aria-pressed="false">-10 dB</button>
-              <button type="button" data-value="-15dB" aria-pressed="false">-15 dB</button>
+              <button type="button" data-value="-25dB" aria-pressed="true">-25 dB</button>
               <button type="button" data-value="-20dB" aria-pressed="false">-20 dB</button>
-              <button type="button" data-value="-25dB" aria-pressed="false">-25 dB</button>
+              <button type="button" data-value="-15dB" aria-pressed="false">-15 dB</button>
+              <button type="button" data-value="-10dB" aria-pressed="false">-10 dB</button>
+              <button type="button" data-value="-05dB" aria-pressed="false">-5 dB</button>
             </div>
           </fieldset>
         </div>
@@ -186,6 +189,6 @@
       </article>
     </template>
 
-    <script src="script.js?v=20260913-2"></script>
+    <script src="script.js?v=20260913-3"></script>
   </body>
 </html>

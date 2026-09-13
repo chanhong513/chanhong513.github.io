@@ -56,6 +56,30 @@ footer {
   text-decoration: none;
 }
 
+.header-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.paper-link {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.paper-link:not(.is-disabled):hover,
+.paper-link:not(.is-disabled):focus-visible {
+  color: var(--accent);
+}
+
+.paper-link.is-disabled {
+  color: var(--muted);
+  cursor: default;
+  pointer-events: none;
+}
+
 .brand-mark {
   width: 26px;
   height: 24px;

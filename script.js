@@ -8,6 +8,9 @@ const tracks = [
   { name: "No post-filter", detail: "Ablation output", file: "processed_sound_NoPF.wav" },
 ];
 
+// Replace this with the published paper URL when it becomes available.
+const paperUrl = "";
+
 const snrLevels = [-25, -20, -15, -10, -5];
 
 const chartSeries = [
@@ -148,7 +151,7 @@ const doaData = {
 
 const state = {
   environment: "anechoic",
-  snr: "-05dB",
+  snr: "-25dB",
   view: "speech",
   metric: "siSdr",
   hiddenSeries: new Set(),
@@ -617,6 +620,16 @@ referenceHost.appendChild(
     "assets/audio/ref_sound.wav",
   ),
 );
+
+const paperLink = document.querySelector("#paper-link");
+if (paperUrl) {
+  paperLink.href = paperUrl;
+  paperLink.textContent = "Paper";
+  paperLink.target = "_blank";
+  paperLink.rel = "noopener";
+  paperLink.classList.remove("is-disabled");
+  paperLink.removeAttribute("aria-disabled");
+}
 
 setupSegmentedControl("#environment-control", "environment");
 setupSegmentedControl("#snr-control", "snr");
