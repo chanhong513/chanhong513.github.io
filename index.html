@@ -24,13 +24,28 @@
     <main>
       <section class="intro" aria-labelledby="page-title">
         <p class="eyebrow">Ego-noise-aware spatial filtering</p>
-        <h1 id="page-title">Reliable UAV audition in extreme low-SNR conditions.</h1>
-        <p class="summary">
-          Hear how our framework turns the structure of UAV ego-noise into an
-          advantage, combining phase-consistency-guided DoA estimation,
-          frequency-adaptive beamforming, and null-reference post-filtering to
-          recover speech down to -25 dB SNR.
-        </p>
+        <h1 id="page-title">Reliable UAV audition, even at -25 dB.</h1>
+        <div class="intro-bottom">
+          <p class="summary">
+            Our ego-noise-aware spatial filtering framework coordinates robust
+            DoA estimation, frequency-adaptive beamforming, and residual-noise
+            suppression without a pretrained model.
+          </p>
+          <div class="intro-facts" aria-label="Key results">
+            <div>
+              <strong>98.12%</strong>
+              <span>Anechoic DoA accuracy at -25 dB</span>
+            </div>
+            <div>
+              <strong>0.021</strong>
+              <span>GMAC/s computational cost</span>
+            </div>
+            <div>
+              <strong>Zero</strong>
+              <span>Pretrained models required</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="reference-band" aria-labelledby="reference-heading">
@@ -45,13 +60,13 @@
       <section class="comparison" aria-labelledby="comparison-heading">
         <div class="comparison-heading">
           <div>
-            <p class="section-label">Evaluation samples</p>
-            <h2 id="comparison-heading">Method comparison</h2>
+            <p class="section-label">Interactive evaluation</p>
+            <h2 id="comparison-heading">Listen and compare</h2>
           </div>
           <p class="selection-summary" id="selection-summary" aria-live="polite"></p>
         </div>
 
-        <div class="controls" aria-label="Audio sample conditions">
+        <div class="controls" aria-label="Evaluation conditions">
           <fieldset>
             <legend>Environment</legend>
             <div class="segmented" id="environment-control">
@@ -71,7 +86,75 @@
           </fieldset>
         </div>
 
-        <div class="track-list" id="track-list" aria-live="polite"></div>
+        <div class="evaluation-grid">
+          <section class="evaluation-panel audio-panel" aria-labelledby="audio-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-number">01</span>
+                <h3 id="audio-heading">Demo audio</h3>
+              </div>
+              <p>Selected condition</p>
+            </div>
+            <div class="track-list" id="track-list" aria-live="polite"></div>
+          </section>
+
+          <section class="evaluation-panel results-panel" aria-labelledby="results-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-number">02</span>
+                <h3 id="results-heading">Performance</h3>
+              </div>
+              <p>Paper results</p>
+            </div>
+
+            <fieldset class="view-fieldset">
+              <legend>Evaluation</legend>
+              <div class="segmented view-control" id="view-control">
+                <button type="button" data-value="speech" aria-pressed="true">Speech enhancement</button>
+                <button type="button" data-value="doa" aria-pressed="false">DoA estimation</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="metric-fieldset" id="speech-metrics">
+              <legend>Metric</legend>
+              <div class="segmented metric-control" id="metric-control">
+                <button type="button" data-value="siSdr" aria-pressed="true">SI-SDR</button>
+                <button type="button" data-value="pesq" aria-pressed="false">PESQ</button>
+                <button type="button" data-value="estoi" aria-pressed="false">ESTOI</button>
+                <button type="button" data-value="dnsMos" aria-pressed="false">DNSMOS</button>
+              </div>
+            </fieldset>
+
+            <fieldset class="metric-fieldset" id="doa-metrics" hidden>
+              <legend>Metric</legend>
+              <div class="segmented metric-control" id="doa-metric-control">
+                <button type="button" data-value="doaAccuracy" aria-pressed="true">Accuracy</button>
+                <button type="button" data-value="doaMae" aria-pressed="false">MAE</button>
+              </div>
+            </fieldset>
+
+            <div class="chart-summary">
+              <span id="chart-metric-name">SI-SDR improvement</span>
+              <strong id="chart-insight"></strong>
+              <small id="chart-comparison-note">Proposed vs. noisy input at the selected SNR</small>
+            </div>
+
+            <div class="chart-wrap" id="chart-wrap">
+              <svg
+                id="performance-chart"
+                viewBox="0 0 640 360"
+                role="img"
+                aria-labelledby="chart-title chart-description"
+              >
+                <title id="chart-title">Speech enhancement performance by input SNR</title>
+                <desc id="chart-description">Line chart using the experimental results reported in Table 1.</desc>
+              </svg>
+              <div class="chart-tooltip" id="chart-tooltip" role="status"></div>
+            </div>
+            <div class="chart-legend" id="chart-legend" aria-label="Chart series"></div>
+            <p class="chart-source" id="chart-source">Simulated test set; values reproduced from Table 1 of the paper.</p>
+          </section>
+        </div>
       </section>
     </main>
 
@@ -95,7 +178,7 @@
           </button>
           <button class="waveform-button" type="button" aria-label="Seek audio">
             <canvas class="waveform" height="72"></canvas>
-            <span class="progress-line" aria-hidden="true"></span>
+            <span class="progress-fill" aria-hidden="true"></span>
           </button>
           <span class="time" aria-label="Playback time">0:00 / 0:00</span>
           <audio preload="metadata"></audio>
