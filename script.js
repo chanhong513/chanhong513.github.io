@@ -158,7 +158,7 @@ function renderTracks() {
     trackList.appendChild(createTrack(item, index, getPath(item.file)));
   });
 
-  const environment = state.environment === "anechoic" ? "Anechoic" : "Reverberative";
+  const environment = state.environment === "anechoic" ? "Anechoic" : "Reverberant";
   selectionSummary.textContent = `${environment} / ${state.snr.replace("dB", " dB")}`;
 }
 
