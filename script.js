@@ -353,7 +353,7 @@ function renderChart() {
   const selectedIndex = isDnsMos ? 2 : snrLevels.indexOf(selectedSnr);
   const width = 640;
   const height = 360;
-  const margin = { top: 20, right: 18, bottom: 46, left: 54 };
+  const margin = { top: 26, right: 26, bottom: 58, left: 68 };
   const plotWidth = width - margin.left - margin.right;
   const plotHeight = height - margin.top - margin.bottom;
   const values = seriesList.flatMap((series) => data[series.id]);
@@ -390,7 +390,7 @@ function renderChart() {
     ),
   );
 
-  const selectionWidth = isDnsMos ? (plotWidth / xLabels.length) * 0.9 : 44;
+  const selectionWidth = isDnsMos ? (plotWidth / xLabels.length) * 0.86 : 42;
   svg.appendChild(
     createSvgElement("rect", {
       class: "chart-selection",
@@ -424,7 +424,7 @@ function renderChart() {
     svg.appendChild(
       createSvgElement(
         "text",
-        { class: "chart-axis-label", x: margin.left - 10, y: y + 3, "text-anchor": "end" },
+        { class: "chart-axis-label", x: margin.left - 14, y: y + 5, "text-anchor": "end" },
         value.toFixed(decimals),
       ),
     );
@@ -437,7 +437,7 @@ function renderChart() {
         {
           class: "chart-axis-label",
           x: xAt(index),
-          y: height - 20,
+          y: height - 28,
           "text-anchor": "middle",
           "font-weight": index === selectedIndex ? "800" : "400",
         },
@@ -449,7 +449,7 @@ function renderChart() {
   svg.appendChild(
     createSvgElement(
       "text",
-      { class: "chart-axis-title", x: width - margin.right, y: height - 2, "text-anchor": "end" },
+      { class: "chart-axis-title", x: width - margin.right, y: height - 8, "text-anchor": "end" },
       isDnsMos ? "DNSMOS P.835 component" : "Input SNR (dB)",
     ),
   );
@@ -488,9 +488,9 @@ function renderChart() {
           class: "chart-line",
           points,
           stroke: series.color,
-          "stroke-width": series.featured ? 3 : 1.6,
+          "stroke-width": series.featured ? 4 : 2.4,
           "stroke-dasharray": series.dash || "",
-          opacity: series.featured ? 1 : 0.82,
+          opacity: series.featured ? 1 : 0.88,
         }),
       );
 
@@ -499,7 +499,7 @@ function renderChart() {
           class: "chart-point",
           cx: xAt(index),
           cy: yAt(value),
-          r: index === selectedIndex ? (series.featured ? 5.5 : 4.5) : series.featured ? 4 : 3,
+          r: index === selectedIndex ? (series.featured ? 7 : 6) : series.featured ? 5.5 : 4.5,
           fill: series.color,
           tabindex: 0,
           role: "img",
