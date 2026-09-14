@@ -798,21 +798,27 @@ footer p {
   .site-header {
     height: auto;
     min-height: 74px;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 10px 16px;
     padding-block: 14px;
   }
 
+  .brand {
+    flex: 1 0 auto;
+  }
+
   .header-links {
+    flex: 1 1 100%;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   .paper-link.is-disabled {
-    display: none;
+    display: inline;
   }
 
   .venue {
-    display: none;
+    display: inline;
   }
 
   .intro {
