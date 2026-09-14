@@ -25,6 +25,7 @@ body {
   color: var(--ink);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   letter-spacing: 0;
+  overflow-x: hidden;
 }
 
 button {
@@ -230,6 +231,8 @@ h1 {
 }
 
 .reference-band .track {
+  display: block;
+  min-height: 0;
   padding: 0;
   border: 0;
 }
@@ -239,7 +242,8 @@ h1 {
 }
 
 .reference-band .player {
-  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
 }
 
 .comparison {
@@ -286,12 +290,18 @@ legend {
 .segmented {
   display: flex;
   gap: 4px;
+  max-width: 100%;
   padding: 4px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
   background: #e5e7e5;
   border-radius: 6px;
 }
 
 .segmented button {
+  flex: 0 0 auto;
   min-height: 36px;
   padding: 0 15px;
   border: 0;
@@ -410,9 +420,19 @@ legend {
   width: 100%;
 }
 
+#environment-control {
+  min-width: 300px;
+}
+
+#environment-control button {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 .view-control button,
 .metric-control button {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .view-control button {
@@ -661,6 +681,8 @@ legend {
 }
 
 .play-button {
+  appearance: none;
+  -webkit-appearance: none;
   width: 42px;
   height: 42px;
   display: grid;
@@ -679,6 +701,7 @@ legend {
 }
 
 .play-icon {
+  display: block;
   width: 0;
   height: 0;
   margin-left: 3px;
@@ -697,13 +720,15 @@ legend {
 }
 
 .waveform-button {
+  appearance: none;
+  -webkit-appearance: none;
   position: relative;
   width: 100%;
   height: 42px;
   padding: 0;
   overflow: hidden;
   border: 0;
-  background: transparent;
+  background: #8d9499;
   cursor: pointer;
 }
 
@@ -712,10 +737,11 @@ legend {
   height: 42px;
   display: block;
   color: #858b90;
+  opacity: 0;
 }
 
-.reference-band .waveform {
-  color: #b8bec2;
+.reference-band .waveform-button {
+  background: #b8bec2;
 }
 
 .progress-fill {
@@ -764,7 +790,29 @@ footer p {
   .site-header,
   main,
   footer {
-    width: min(calc(100% - 32px), var(--max-width));
+    width: auto;
+    max-width: none;
+    margin-inline: 16px;
+  }
+
+  .site-header {
+    height: auto;
+    min-height: 74px;
+    gap: 16px;
+    padding-block: 14px;
+  }
+
+  .header-links {
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  .paper-link.is-disabled {
+    display: none;
+  }
+
+  .venue {
+    display: none;
   }
 
   .intro {
@@ -772,7 +820,38 @@ footer p {
   }
 
   h1 {
-    font-size: 46px;
+    max-width: 100%;
+    font-size: 36px;
+    line-height: 1.06;
+    overflow-wrap: anywhere;
+  }
+
+  .comparison h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .intro-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-facts > div,
+  .intro-facts > div:first-child {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 14px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .intro-facts > div:first-child {
+    border-top: 0;
+  }
+
+  .intro-facts strong {
+    margin-bottom: 0;
+    font-size: 25px;
   }
 
   .reference-band {
@@ -789,17 +868,33 @@ footer p {
     gap: 20px;
   }
 
+  .controls fieldset,
+  .segmented {
+    width: 100%;
+  }
+
+  #environment-control {
+    min-width: 0;
+  }
+
+  .segmented button {
+    padding-inline: 8px;
+  }
+
+  .view-control button,
+  .metric-control button {
+    flex: 1 0 max-content;
+    min-width: max-content;
+  }
+
   .evaluation-panel {
     padding: 18px;
   }
 
-  .snr-control {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  }
-
   .snr-control button {
-    padding-inline: 5px;
+    flex: 0 0 calc((100% - 4px) / 2);
+    min-width: 0;
+    padding-inline: 10px;
   }
 
   .track {
@@ -839,6 +934,11 @@ footer p {
     gap: 32px;
   }
 
+  .reference-band {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .evaluation-grid {
     grid-template-columns: 1fr;
   }
@@ -849,40 +949,12 @@ footer p {
 }
 
 @media (max-width: 430px) {
-  .venue {
-    display: none;
-  }
-
   h1 {
-    font-size: 44px;
+    font-size: 32px;
   }
 
   .summary {
     font-size: 16px;
-  }
-
-  .intro-facts {
-    grid-template-columns: 1fr;
-  }
-
-  .intro-facts > div,
-  .intro-facts > div:first-child {
-    display: grid;
-    grid-template-columns: 92px 1fr;
-    gap: 14px;
-    align-items: baseline;
-    padding: 14px 0;
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .intro-facts > div:first-child {
-    border-top: 0;
-  }
-
-  .intro-facts strong {
-    margin-bottom: 0;
-    font-size: 25px;
   }
 
   .segmented button {
@@ -897,6 +969,13 @@ footer p {
 
   .chart-wrap {
     min-height: 240px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #performance-chart {
+    min-width: 520px;
   }
 
   .chart-legend {
